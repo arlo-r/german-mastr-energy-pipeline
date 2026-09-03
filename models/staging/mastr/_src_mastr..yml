@@ -1,0 +1,137 @@
+version: 2
+
+sources:
+  - name: mastr
+    description: "The Marktstammdatenregister (MaStR) is the central official register for the German energy market, managed by the Federal Network Agency (Bundesnetzagentur). It contains master data on all electricity and gas generation units, storage systems, grid operators, and registered market actors in Germany."
+    database: energy-flex-analytics
+    schema: mastr_raw
+
+    tables:
+      # ==========================================
+      # 1. UNITS / GENERATION & CONSUMPTION (Einheiten)
+      # ==========================================
+      - name: EinheitenSolar
+        description: "Main table for Photovoltaic (Solar) generation units. Contains technical specifications, gross and net capacity ratings (in kW), operational status, spatial references, and foreign key relationships."
+
+      - name: EinheitenWind
+        description: "Technical attributes for Wind turbine generation units (Onshore and Offshore), including hub height, rotor diameter, manufacturer, and operational status."
+
+      - name: EinheitenBiomasse
+        description: "Generation units powered by biomass fuel sources."
+
+      - name: EinheitenWasser
+        description: "Hydroelectric power generation units (run-of-river, reservoir, pumped storage)."
+
+      - name: EinheitenGeothermieGrubengasDruckentspannung
+        description: "Geothermal, mine gas, and pressure expansion energy generation units."
+
+      - name: EinheitenVerbrennung
+        description: "Thermal combustion generation units (fossil fuel, gas, and coal power plants)."
+
+      - name: EinheitenKernkraft
+        description: "Nuclear power generation units."
+
+      - name: EinheitenStromSpeicher
+        description: "Electrical Energy Storage units (Battery & Storage) covering home batteries, industrial storage, and large-scale utility batteries."
+
+      - name: EinheitenStromVerbraucher
+        description: "Large-scale electrical consumption units."
+
+      - name: EinheitenGasErzeuger
+        description: "Gas production units (biogas, biomethane, hydrogen production)."
+
+      - name: EinheitenGasSpeicher
+        description: "Gas storage units and facilities."
+
+      - name: EinheitenGasverbraucher
+        description: "Large-scale gas consumption units."
+
+      - name: EinheitenGenehmigung
+        description: "Permitting and regulatory authorization documents assigned to units."
+
+      - name: EinheitenAenderungNetzbetreiberzuordnungen
+        description: "Historical tracking of changes in grid operator assignments to units."
+
+      # ==========================================
+      # 2. INSTALLATIONS & SUPPORT SCHEMES (Anlagen / EEG / KWK)
+      # ==========================================
+      - name: AnlagenEegSolar
+        description: "Renewable Energy Sources Act (EEG) compliance and tariff records for solar units."
+
+      - name: AnlagenEegWind
+        description: "EEG compliance and support records for wind turbines."
+
+      - name: AnlagenEegBiomasse
+        description: "EEG support scheme data for biomass installations."
+
+      - name: AnlagenEegWasser
+        description: "EEG support scheme data for hydroelectric plants."
+
+      - name: AnlagenEegGeothermieGrubengasDruckentspannung
+        description: "EEG support scheme data for geothermal and pressure expansion plants."
+
+      - name: AnlagenEegSpeicher
+        description: "EEG support scheme records linked to energy storage installations."
+
+      - name: AnlagenKwk
+        description: "Combined Heat and Power (CHP / KWKG) installation records."
+
+      - name: AnlagenGasSpeicher
+        description: "Gas storage plant facility aggregated definitions."
+
+      - name: AnlagenStromSpeicher
+        description: "Power storage plant facility aggregated definitions."
+
+      # ==========================================
+      # 3. MARKET ACTORS & ROLES (Marktakteure)
+      # ==========================================
+      - name: Marktakteure
+        description: "Market Actors in the German energy system, including plant operators (Anlagenbetreiber), grid operators (Netzbetreiber), and energy suppliers."
+
+      - name: MarktakteureUndRollen
+        description: "Mapping table linking market actors to their active market roles."
+
+      - name: Marktrollen
+        description: "Reference lookup catalog defining standard market roles in the German energy system."
+
+      - name: Marktfunktionen
+        description: "Catalog of operational market functions and duties."
+
+      # ==========================================
+      # 4. LOCATIONS & GRID INFRASTRUCTURE (Lokationen & Netze)
+      # ==========================================
+      - name: Lokationen
+        description: "Physical spatial locations and postal addresses of installations."
+
+      - name: Lokationstypen
+        description: "Reference types for registered physical locations."
+
+      - name: Netzanschlusspunkte
+        description: "Grid Connection Points tracking voltage levels (Spannungsebene), assigned grid operator, and geographic location references."
+
+      - name: Netze
+        description: "Grid networks across electricity and gas transmission/distribution."
+
+      - name: Bilanzierungsgebiete
+        description: "Energy balancing zones (Balancing Groups) in Germany."
+
+      # ==========================================
+      # 5. CATALOGS & TECHNICAL LOOKUPS (Kataloge)
+      # ==========================================
+      - name: Katalogkategorien
+        description: "Master catalog categories defining lookup taxonomies across MaStR."
+
+      - name: Katalogwerte
+        description: "Lookup reference values mapped against internal MaStR IDs."
+
+      - name: Einheitentypen
+        description: "Classification categories for unit types."
+
+      - name: Ertuechtigungen
+        description: "Record of plant retrofits, modernizations, and repowering modifications."
+
+      - name: GeloeschteUndDeaktivierteEinheiten
+        description: "Historical audit log of deleted or deactivated units."
+
+      - name: GeloeschteUndDeaktivierteMarktakteure
+        description: "Historical audit log of deleted or deactivated market actors."
