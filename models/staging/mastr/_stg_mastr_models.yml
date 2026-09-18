@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: stg_mastr__solar
+    description: "Staging model for photovoltaic (Solar) generation units from MaStR. Cleaned, type-casted, and filtered for valid net capacity."
+    columns:
+      - name: solar_unit_mastr_id
+        description: "Primary key for the solar generation unit (MaStR ID)."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: location_mastr_id
+        description: "Foreign key referencing the physical location (Lokation) in MaStR."
+        data_tests:
+          - not_null
+
+      - name: net_capacity_kw
+        description: "Net capacity rating in kilowatts (kW) connected to the grid."
+        data_tests:
+          - not_null
+
+      - name: gross_capacity_kw
+        description: "Gross capacity rating of the solar installation in kilowatts (kW)."
+
+      - name: unit_status_code
+        description: "Status code representing operational state (e.g., in operation)."
+
+      - name: commissioning_date
+        description: "Date when the solar unit was commissioned/started operation."
+
+      - name: state_name
+        description: "German federal state (Bundesland) where the unit is located."
+
+      - name: postal_code
+        description: "Postal code (PLZ) of the installation."
+
+      - name: city
+        description: "City or municipality name."
+        
+  - name: stg_mastr__storage
+    description: "Staging model for energy storage units from MaStR. Cleaned, type-casted, and filtered for valid location and net capacity."
+    columns:
+      - name: storage_unit_mastr_id
+        description: "Primary key for the energy storage unit (MaStR ID)."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: location_mastr_id
+        description: "Foreign key referencing the physical location (Lokation) in MaStR."
+        data_tests:
+          - not_null
+
+      - name: net_capacity_kw
+        description: "Net capacity rating in kilowatts (kW) connected to the grid."
+        data_tests:
+          - not_null
