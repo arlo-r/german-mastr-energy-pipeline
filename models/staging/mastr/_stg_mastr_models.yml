@@ -37,7 +37,7 @@ models:
 
       - name: city
         description: "City or municipality name."
-        
+
   - name: stg_mastr__storage
     description: "Staging model for energy storage units from MaStR. Cleaned, type-casted, and filtered for valid location and net capacity."
     columns:
@@ -55,4 +55,13 @@ models:
       - name: net_capacity_kw
         description: "Net capacity rating in kilowatts (kW) connected to the grid."
         data_tests:
+          - not_null
+  
+  - name: stg_mastr__location
+    description: "Staging model for physical locations (Lokationen) from MaStR. Connects solar and storage assets to spatial and grid attributes."
+    columns:
+      - name: location_mastr_id
+        description: "Primary key for the physical location in MaStR (SEL... format)."
+        data_tests:
+          - unique
           - not_null
