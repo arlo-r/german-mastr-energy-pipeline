@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: int_mastr__solar_storage_co_located
+    description: "Intermediate model joining Solar units, Energy Storage assets, and Physical Locations based on location_mastr_id to analyze co-located renewable energy sites."
+    columns:
+      - name: location_mastr_id
+        description: "Foreign key referencing the physical location (Lokation) in MaStR where both solar and storage are deployed."
+        data_tests:
+          - not_null
+
+      - name: solar_unit_mastr_id
+        description: "Unique MaStR ID of the solar generation unit."
+        data_tests:
+          - not_null
+
+      - name: storage_unit_mastr_id
+        description: "Unique MaStR ID of the battery storage unit."
+        data_tests:
+          - not_null
+
+      - name: solar_capacity_kw
+        description: "Net rated capacity of the solar installation in kilowatts (kW)."
+
+      - name: storage_capacity_kw
+        description: "Net rated capacity of the battery storage unit in kilowatts (kW)."
+
+      - name: deployment_timeline_status
+        description: "Categorical field indicating if storage was installed on/after or before the solar unit."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Storage added on/after Solar','Storage installed before Solar','Unknown timeline']
