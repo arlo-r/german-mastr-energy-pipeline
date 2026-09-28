@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: fct_mastr__solar_storage_co_located
+    description: "Fact table containing individual co-located Solar PV and Storage assets in Germany."
+    columns:
+      - name: location_mastr_id
+        description: "Foreign key for physical site."
+        data_tests:
+          - not_null
+
+      - name: solar_unit_mastr_id
+        data_tests:
+          - not_null
+
+      - name: storage_unit_mastr_id
+        data_tests:
+          - not_null
+
+  - name: dim_mastr__co_location_by_state
+    description: "Dimension summary table aggregating co-location metrics by German federal state."
+    columns:
+      - name: state_name
+        description: "German federal state (Bundesland)."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: total_co_located_sites
+        data_tests:
+          - not_null
