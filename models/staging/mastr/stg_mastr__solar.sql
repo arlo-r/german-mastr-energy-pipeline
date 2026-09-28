@@ -17,7 +17,7 @@ renamed as (
         safe_cast(Inbetriebnahmedatum as date)         as commissioning_date,
         
         -- Location Attributes
-        cast(Bundesland as string)                     as state_name,
+        {{ map_german_state('Bundesland') }}           as state_name,
         cast(Postleitzahl as string)                   as postal_code,
         cast(Ort as string)                            as city
 
