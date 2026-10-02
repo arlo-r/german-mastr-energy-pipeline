@@ -69,6 +69,7 @@ The project adheres to dbt best practices using a standard 3-layer architecture:
 
 ## 📊 Data Lineage Graph
 Below is the dbt lineage DAG illustrating data transformation flow from raw sources to aggregate analytics marts:
+![dbt Lineage DAG](docs/lineage.png)
 
 ## 📈 Key Market Insights (Sample Output)
 Aggregated analytics from `dim_mastr__co_location_by_state`:
